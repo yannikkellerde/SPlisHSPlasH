@@ -462,6 +462,10 @@ void SimulatorBase::initSimulation()
 	updateScalarField();
 }
 
+void SimulatorBase::initBoundaryData(){
+	m_boundarySimulator->initBoundaryData();
+}
+
 void SimulatorBase::runSimulation()
 {
 	m_boundarySimulator->initBoundaryData();
@@ -1648,7 +1652,7 @@ void SimulatorBase::writeRigidBodiesBIN(const std::string &exportPath)
 	}
 
 	BinaryFileWriter binWriter;
-	if (m_isFirstFrame || !isStatic)
+	if (true)
 		binWriter.openFile(exportFileName.c_str());
 
 	if (m_isFirstFrame)
@@ -1675,7 +1679,7 @@ void SimulatorBase::writeRigidBodiesBIN(const std::string &exportPath)
 		}
 	}
 
-	if (m_isFirstFrame || !isStatic)
+	if (true)
 	{
 		for (unsigned int i = 0; i < sim->numberOfBoundaryModels(); i++)
 		{
@@ -1718,7 +1722,7 @@ void SimulatorBase::writeRigidBodiesVTK(const std::string &exportPath)
 	const char * real_str = " float\n";
 #endif
 
-	if (m_isFirstFrameVTK || !isStatic)
+	if (true)
 	{
 		for (unsigned int i = 0; i < sim->numberOfBoundaryModels(); i++)
 		{
