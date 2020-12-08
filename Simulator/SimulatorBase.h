@@ -114,6 +114,7 @@ namespace SPH
 		void init(std::vector<std::string> argv, const std::string &windowName);
 		void init(int argc, char **argv, const std::string &windowName);
         void initSimulation();
+		void initBoundaryData();
 		void runSimulation();
 		void cleanup();
 

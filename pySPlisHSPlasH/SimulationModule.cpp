@@ -315,6 +315,7 @@ void SimulationModule(py::module m_sub){
             .def("getStateFile", &SPH::SimulatorBase::getStateFile)
             .def("setStateFile", &SPH::SimulatorBase::setStateFile)
 
+            .def("initBoundaryData", &SPH::SimulatorBase::initBoundaryData)
             .def("getBoundarySimulator", &SPH::SimulatorBase::getBoundarySimulator, py::return_value_policy::reference_internal)
             .def("setBoundarySimulator", &SPH::SimulatorBase::setBoundarySimulator)
             .def("getGui", &SPH::SimulatorBase::getGui, py::return_value_policy::reference_internal)
