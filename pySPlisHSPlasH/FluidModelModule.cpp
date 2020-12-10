@@ -33,6 +33,7 @@ std::function<void* (const unsigned int)> makeVoidPointerFct(py::array_t<Real, p
 }
 
 void FluidModelModule(py::module m_sub){
+    using Positions = SPH::FluidModel::Positions;
     // ---------------------------------------
     // Enum Field Type
     // ---------------------------------------
@@ -253,6 +254,8 @@ void FluidModelModule(py::module m_sub){
 		// .def("getPosition", (Vector3r& (SPH::FluidModel::*)(const unsigned int))(&SPH::FluidModel::getPosition)) // TODO: wont work by reference
 		.def("getPosition", (const Vector3r& (SPH::FluidModel::*)(const unsigned int)const)(&SPH::FluidModel::getPosition))
 		.def("setPosition", &SPH::FluidModel::setPosition)
+
+        .def("getAllPositions", (const Positions& (SPH::FluidModel::*)()const)(&SPH::FluidModel::getAllPositions))
 
 		// .def("getVelocity", (Vector3r& (SPH::FluidModel::*)(const unsigned int))(&SPH::FluidModel::getVelocity)) // TODO: wont work by reference
 		.def("getVelocity", (const Vector3r& (SPH::FluidModel::*)(const unsigned int)const)(&SPH::FluidModel::getVelocity))

@@ -203,6 +203,7 @@ namespace SPH
 		static void mainLoop();
 		static void leaveMainLoop();
 		static void swapBuffers();
+        static void one_render();
 
 		static GLFWwindow* getWindow() { return m_glfw_window; }
 	};

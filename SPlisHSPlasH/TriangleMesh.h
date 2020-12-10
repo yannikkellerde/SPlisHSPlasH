@@ -34,6 +34,14 @@ namespace SPH
 		/** Add new vertex. */
 		void addVertex(const Vector3r &vertex);
 
+        void translateVertices(const Vector3r &translation);
+
+        void rotateVertices(const Matrix3r &rotation);
+
+        void setFaces(const Faces &faces);
+
+        void setVertices(const Vertices &vertices);
+
 		const Faces& getFaces() const { return m_indices; }
 		Faces& getFaces(){ return m_indices; }
 		const Normals& getFaceNormals() const { return m_normals; }

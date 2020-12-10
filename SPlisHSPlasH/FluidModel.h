@@ -83,6 +83,7 @@ namespace SPH
 	class FluidModel : public GenParam::ParameterObject
 	{
 		public:
+            typedef std::vector<Vector3r> Positions;
 			static int NUM_PARTICLES;
 			static int NUM_REUSED_PARTICLES;
 			static int DENSITY0;
@@ -281,6 +282,16 @@ namespace SPH
 			FORCE_INLINE const Vector3r &getPosition(const unsigned int i) const
 			{
 				return m_x[i];
+			}
+
+            FORCE_INLINE Positions &getAllPositions()
+			{
+				return m_x;
+			}
+
+			FORCE_INLINE const Positions &getAllPositions() const
+			{
+				return m_x;
 			}
 
 			FORCE_INLINE void setPosition(const unsigned int i, const Vector3r &pos)

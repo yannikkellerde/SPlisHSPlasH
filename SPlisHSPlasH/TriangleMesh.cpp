@@ -45,6 +45,28 @@ void TriangleMesh::addVertex(const Vector3r &vertex)
 	m_x.push_back(vertex);
 }
 
+void TriangleMesh::setFaces(const Faces &faces)
+{
+    m_indices = faces;
+}
+
+void TriangleMesh::setVertices(const Vertices &vertices)
+{
+    m_x = vertices;
+}
+
+void TriangleMesh::rotateVertices(const Matrix3r &rotation)
+{
+    for (unsigned int j = 0; j < numVertices(); j++)
+		m_x[j] = rotation * m_x[j];
+}
+
+void TriangleMesh::translateVertices(const Vector3r &translation)
+{
+    for (unsigned int j = 0; j < numVertices(); j++)
+		m_x[j] = m_x[j]+translation;
+}
+
 void SPH::TriangleMesh::updateNormals()
 {
 	m_normals.resize(numFaces());

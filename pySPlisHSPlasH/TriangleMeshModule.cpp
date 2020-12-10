@@ -33,6 +33,11 @@ void TriangleMeshModule(py::module m_sub) {
             // .def("getVertexNormals", (Normals & (SPH::TriangleMesh::*)())(&SPH::TriangleMesh::getVertexNormals)) // TODO: wont work by reference
             .def("getVertices", (const Vertices & (SPH::TriangleMesh::*)()const)(&SPH::TriangleMesh::getVertices))
             // .def("getVertices", (Vertices & (SPH::TriangleMesh::*)())(&SPH::TriangleMesh::getVertices)) // TODO: wont work by reference
+            .def("setVertices", &SPH::TriangleMesh::setVertices)
+            .def("setFaces", &SPH::TriangleMesh::setFaces)
+            .def("rotateVertices", &SPH::TriangleMesh::rotateVertices)
+            .def("translateVertices", &SPH::TriangleMesh::translateVertices)
+
 
             .def("numVertices", &SPH::TriangleMesh::numVertices)
             .def("numFaces", &SPH::TriangleMesh::numFaces)

@@ -436,6 +436,11 @@ void Simulator_GUI_imgui::run()
 	MiniGL::mainLoop();
 }
 
+void Simulator_GUI_imgui::one_render()
+{
+    MiniGL::one_render();
+}
+
 void Simulator_GUI_imgui::stop()
 {
 	MiniGL::leaveMainLoop();

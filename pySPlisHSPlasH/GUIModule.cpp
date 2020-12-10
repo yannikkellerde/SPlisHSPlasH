@@ -53,7 +53,8 @@ void GUIModule(py::module m) {
     // imgui GUI Class
     // ---------------------------------------
             py::class_<SPH::Simulator_GUI_imgui, SPH::Simulator_GUI_Base>(m_sub, "Simulator_GUI_imgui")
-                .def(py::init<SPH::SimulatorBase*>());
+                .def(py::init<SPH::SimulatorBase*>())
+                .def("one_render", &SPH::Simulator_GUI_imgui::one_render);
 #else
     // ---------------------------------------
     // Tweakbar GUI Class

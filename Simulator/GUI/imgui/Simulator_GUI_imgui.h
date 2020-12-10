@@ -42,6 +42,7 @@ namespace SPH
 			virtual void update();
 			virtual void cleanup();
 			virtual void run();
+            virtual void one_render();
 			virtual void stop();
 			virtual void addKeyFunc(char k, std::function<void()> const& func);
 

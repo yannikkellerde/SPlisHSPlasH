@@ -947,6 +947,22 @@ void MiniGL::error_callback(int error, const char* description)
 	LOG_ERR << description;
 }
 
+void MiniGL::one_render()
+{
+    glfwPollEvents();
+
+    if (idlefunc != nullptr)
+        idlefunc();
+
+    glPolygonMode(GL_FRONT_AND_BACK, drawMode);
+    viewport();
+
+    if (scenefunc != nullptr)
+        scenefunc();
+
+    glfwSwapBuffers(m_glfw_window);
+}
+
 void MiniGL::mainLoop()
 {
 	while (!glfwWindowShouldClose(m_glfw_window))
