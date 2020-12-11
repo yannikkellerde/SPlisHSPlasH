@@ -17,6 +17,7 @@ namespace SPH
 
 	protected:
 		Vertices m_x;
+        Vertices m_x0;
 		Faces m_indices;
 		Normals m_normals;
 		Normals m_vertexNormals;
@@ -34,6 +35,8 @@ namespace SPH
 		/** Add new vertex. */
 		void addVertex(const Vector3r &vertex);
 
+        void addVertex0(const Vector3r &vertex);
+
         void translateVertices(const Vector3r &translation);
 
         void rotateVertices(const Matrix3r &rotation);
@@ -50,6 +53,7 @@ namespace SPH
 		Normals& getVertexNormals(){ return m_vertexNormals; }
 		const Vertices& getVertices() const { return m_x; }
 		Vertices& getVertices() { return m_x; }
+        Vertices& getVertices0() { return m_x0; }
 
 		unsigned int numVertices() const { return static_cast<unsigned int>(m_x.size()); }
 		unsigned int numFaces() const { return (unsigned int)m_indices.size() / 3; }

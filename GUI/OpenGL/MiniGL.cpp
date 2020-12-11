@@ -951,9 +951,6 @@ void MiniGL::one_render()
 {
     glfwPollEvents();
 
-    if (idlefunc != nullptr)
-        idlefunc();
-
     glPolygonMode(GL_FRONT_AND_BACK, drawMode);
     viewport();
 

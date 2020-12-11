@@ -12,11 +12,15 @@ namespace SPH
 	*/
 	class StaticRigidBody : public RigidBodyObject 
 	{
+    public:
+        typedef std::vector<Vector3r> Vertices;
 	protected: 
 		Vector3r m_x;
+        Vector3r m_x0;
 		Vector3r m_x_world;
 		Vector3r m_zero;
 		Matrix3r m_R;
+        Matrix3r m_R0;
 		Matrix3r m_R_world;
 		TriangleMesh m_geometry;
 
@@ -38,6 +42,19 @@ namespace SPH
 		virtual void setAngularVelocity(const Vector3r &v) {}
 		virtual void addForce(const Vector3r &f) {}
 		virtual void addTorque(const Vector3r &t) {}
+        virtual void rotateVertices(const Matrix3r &rotation){
+            for (unsigned int j = 0; j < m_geometry.numVertices(); j++)
+			    m_geometry.getVertices()[j] = rotation * m_geometry.getVertices()[j];
+        }
+        virtual void updateVertices(){
+            for (unsigned int j = 0; j < m_geometry.numVertices(); j++)
+			    m_geometry.getVertices()[j] = m_R * m_geometry.getVertices0()[j] + m_x;
+        }
+
+        virtual void setVertices(const Vertices &vertices){
+            for (unsigned int j = 0; j < m_geometry.numVertices(); j++)
+                m_geometry.getVertices()[j] = vertices[j];
+        }
 
 		virtual const std::vector<Vector3r> &getVertices() const { return m_geometry.getVertices(); };
 		virtual const std::vector<Vector3r> &getVertexNormals() const { return m_geometry.getVertexNormals(); };

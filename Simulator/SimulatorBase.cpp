@@ -885,6 +885,7 @@ void SimulatorBase::loadObj(const std::string &filename, TriangleMesh &mesh, con
 	for (unsigned int i = 0; i < nPoints; i++)
 	{
 		mesh.addVertex(Vector3r(x[i][0], x[i][1], x[i][2]));
+        mesh.addVertex0(Vector3r(x[i][0], x[i][1], x[i][2]));
 	}
 	for (unsigned int i = 0; i < nFaces; i++)
 	{

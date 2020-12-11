@@ -32,6 +32,9 @@ void StaticRigidBodyModule(py::module m_sub){
             .def("setAngularVelocity", &SPH::StaticRigidBody::setAngularVelocity)
             .def("addForce", &SPH::StaticRigidBody::addForce)
             .def("addTorque", &SPH::StaticRigidBody::addTorque)
+            
+            .def("rotateVertices", &SPH::StaticRigidBody::rotateVertices)
+            .def("updateVertices", &SPH::StaticRigidBody::updateVertices)
 
             .def("setWorldSpacePosition", &SPH::StaticRigidBody::setWorldSpacePosition)
             .def("setWorldSpaceRotation", &SPH::StaticRigidBody::setWorldSpaceRotation)

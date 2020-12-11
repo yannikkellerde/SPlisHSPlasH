@@ -15,6 +15,7 @@ TriangleMesh::~TriangleMesh()
 void TriangleMesh::initMesh(const unsigned int nPoints, const unsigned int nFaces)
 {
 	m_x.reserve(nPoints);
+    m_x0.reserve(nPoints);
 	m_indices.reserve(nFaces*3);
 	m_normals.reserve(nFaces);
 	m_vertexNormals.reserve(nPoints);
@@ -24,6 +25,7 @@ void TriangleMesh::release()
 {
 	m_indices.clear();
 	m_x.clear();
+    m_x0.clear();
 	m_normals.clear();
 	m_vertexNormals.clear();
 }
@@ -43,6 +45,11 @@ void TriangleMesh::addFace(const int * const indices)
 void TriangleMesh::addVertex(const Vector3r &vertex)
 {
 	m_x.push_back(vertex);
+}
+
+void TriangleMesh::addVertex0(const Vector3r &vertex)
+{
+	m_x0.push_back(vertex);
 }
 
 void TriangleMesh::setFaces(const Faces &faces)
