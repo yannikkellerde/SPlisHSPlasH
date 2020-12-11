@@ -35,7 +35,10 @@ namespace SPH
 	{
 	#define IMAGE_ROWS 128
 	#define IMAGE_COLS 128
-	
+	public:
+        static int bottle_x;
+        static int bottle_y;
+        static int bottle_rotation;
 	private:
 		struct Line
 		{

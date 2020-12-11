@@ -36,10 +36,13 @@ MiniGL::DestroyFct MiniGL::destroyfunc = nullptr;
 void (*MiniGL::exitfunc)(void) = NULL;
 int MiniGL::m_width = 0;
 int MiniGL::m_height = 0;
+int MiniGL::bottle_x = 0;
+int MiniGL::bottle_y = 0;
+int MiniGL::bottle_rotation = 0;
 Quaternionr MiniGL::m_rotation;
 Real MiniGL::m_zoom = 1.0;
 Vector3r MiniGL::m_translation;
-Real MiniGL::movespeed = 1.0;
+Real MiniGL::movespeed = 0.3;
 Real MiniGL::turnspeed = 0.01;
 int MiniGL::mouse_button = -1;
 double MiniGL::mouse_wheel_pos = 0;
@@ -612,38 +615,61 @@ void MiniGL::addKeyFunc (unsigned char k, std::function<void()> const& func)
 
 void MiniGL::keyboard(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	// Check if registered listener wants the event
-	for (auto i=0; i < m_keyboardFct.size(); i++)
-	{
-		if (m_keyboardFct[i](key, scancode, action, mods)) 
-			return;
-	}
-
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		m_breakPointLoop = false;
-		m_breakPointActive = false;
-#ifndef __APPLE__
-		leaveMainLoop();
-#else
-		exit(0);
-#endif
-		return;
-	}
-	else if (key == GLFW_KEY_A)
-		move (0, 0, movespeed);
-	else if (key == GLFW_KEY_Y)
-		move (0, 0, -movespeed);
-	else if (key == GLFW_KEY_UP)
-		move(0, -movespeed, 0);
-	else if (key == GLFW_KEY_DOWN)
-		move(0, movespeed, 0);
-	else if (key == GLFW_KEY_LEFT)
-		move(movespeed, 0, 0);
-	else if (key == GLFW_KEY_RIGHT)
-		move(-movespeed, 0, 0);
-	else if (key == GLFW_KEY_F5)
-		m_breakPointLoop = false;	
+    if (action == GLFW_PRESS)
+    {
+        if (key == GLFW_KEY_ESCAPE)
+        {
+            m_breakPointLoop = false;
+            m_breakPointActive = false;
+    #ifndef __APPLE__
+            leaveMainLoop();
+    #else
+            exit(0);
+    #endif
+            return;
+        }
+        else if (key == GLFW_KEY_A)
+            move (0, 0, movespeed);
+        else if (key == GLFW_KEY_Y)
+            move (0, 0, -movespeed);
+        else if (key == GLFW_KEY_U)
+            move(0, -movespeed, 0);
+        else if (key == GLFW_KEY_J)
+            move(0, movespeed, 0);
+        else if (key == GLFW_KEY_H)
+            move(movespeed, 0, 0);
+        else if (key == GLFW_KEY_K)
+            move(-movespeed, 0, 0);
+        else if (key == GLFW_KEY_F5)
+            m_breakPointLoop = false;
+        else if (key == GLFW_KEY_UP)
+            bottle_y = 1;
+        else if (key == GLFW_KEY_DOWN)
+            bottle_y = -1;
+        else if (key == GLFW_KEY_LEFT)
+            bottle_x = -1;
+        else if (key == GLFW_KEY_RIGHT)
+            bottle_x = 1;
+        else if (key == GLFW_KEY_W)
+            bottle_rotation = 1;
+        else if (key == GLFW_KEY_S)
+            bottle_rotation = -1;
+    }
+    else if (action == GLFW_RELEASE)
+    {
+        if (key == GLFW_KEY_UP)
+            bottle_y = 0;
+        else if (key == GLFW_KEY_DOWN)
+            bottle_y = 0;
+        else if (key == GLFW_KEY_LEFT)
+            bottle_x = 0;
+        else if (key == GLFW_KEY_RIGHT)
+            bottle_x = 0;
+        else if (key == GLFW_KEY_W)
+            bottle_rotation = 0;
+        else if (key == GLFW_KEY_S)
+            bottle_rotation = 0;
+    }
 }
 
 void MiniGL::char_callback(GLFWwindow* window, unsigned int codepoint)

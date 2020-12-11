@@ -39,7 +39,6 @@ void Simulator_GUI_imgui::init(int argc, char **argv, const char *name)
 		MiniGL::setViewport(40.0, 0.1f, 500.0, scene.camPosition, scene.camLookat);
 	MiniGL::setSelectionFunc(selection, this);
 	MiniGL::addKeyFunc('i', std::bind(&Simulator_GUI_imgui::particleInfo, this));
-	MiniGL::addKeyFunc('s', std::bind(&SimulatorBase::saveState, m_simulatorBase, ""));
 #ifdef WIN32
 	MiniGL::addKeyFunc('l', std::bind(&SimulatorBase::loadStateDialog, m_simulatorBase));
 #endif 
@@ -61,7 +60,6 @@ void Simulator_GUI_imgui::init(int argc, char **argv, const char *name)
 	MiniGL::setClientIdleFunc(std::bind(&SimulatorBase::timeStep, m_simulatorBase));
 	MiniGL::setClientDestroyFunc(std::bind(&Simulator_GUI_imgui::destroy, this));
 	MiniGL::addKeyFunc('r', std::bind(&SimulatorBase::reset, m_simulatorBase));
-	MiniGL::addKeyFunc('w', Simulator_GUI_imgui::switchDrawMode);
 	MiniGL::addKeyFunc(' ', std::bind(&Simulator_GUI_imgui::switchPause, this));
 	MiniGL::addKeyFunc('m', std::bind(&SimulatorBase::determineMinMaxOfScalarField, m_simulatorBase));
 	MiniGL::setClientSceneFunc(std::bind(&Simulator_GUI_imgui::render, this));
@@ -439,6 +437,19 @@ void Simulator_GUI_imgui::run()
 void Simulator_GUI_imgui::one_render()
 {
     MiniGL::one_render();
+}
+
+int Simulator_GUI_imgui::get_bottle_x()
+{
+    return MiniGL::bottle_x;
+}
+int Simulator_GUI_imgui::get_bottle_y()
+{
+    return MiniGL::bottle_y;
+}
+int Simulator_GUI_imgui::get_bottle_rotation()
+{
+    return MiniGL::bottle_rotation;
 }
 
 void Simulator_GUI_imgui::stop()

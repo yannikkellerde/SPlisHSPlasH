@@ -43,6 +43,9 @@ namespace SPH
 			virtual void cleanup();
 			virtual void run();
             virtual void one_render();
+            virtual int get_bottle_x();
+            virtual int get_bottle_y();
+            virtual int get_bottle_rotation();
 			virtual void stop();
 			virtual void addKeyFunc(char k, std::function<void()> const& func);
 
