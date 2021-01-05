@@ -17,6 +17,7 @@ void SceneLoader::readScene(const char *fileName, Scene &scene)
 	std::ifstream input_file(fileName);
 	if (!input_file.is_open())
 	{
+                LOG_ERR << fileName;
 		LOG_ERR << "Cannot open file!";
 		return;
 	}
@@ -28,7 +29,8 @@ void SceneLoader::readScene(const char *fileName, Scene &scene)
 	{
 		LOG_ERR << e.what();
 		exit(1);
-	}	
+	}
+        input_file.close();
 
 	std::string base_path = FileSystem::getFilePath(fileName);
 

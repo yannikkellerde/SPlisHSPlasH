@@ -57,6 +57,7 @@ void GUIModule(py::module m) {
                 .def("get_bottle_x", &SPH::Simulator_GUI_imgui::get_bottle_x)
                 .def("get_bottle_y", &SPH::Simulator_GUI_imgui::get_bottle_y)
                 .def("get_bottle_rotation", &SPH::Simulator_GUI_imgui::get_bottle_rotation)
+                .def("die", &SPH::Simulator_GUI_imgui::die)
                 .def("one_render", &SPH::Simulator_GUI_imgui::one_render);
 #else
     // ---------------------------------------

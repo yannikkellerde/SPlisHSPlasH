@@ -1014,6 +1014,18 @@ void MiniGL::mainLoop()
 	destroy();
 }
 
+void MiniGL::die()
+{
+    if (destroyfunc != nullptr)
+		destroyfunc();
+
+	glfwDestroyWindow(m_glfw_window);
+
+	glfwTerminate();
+
+	destroy();
+}
+
 void MiniGL::leaveMainLoop()
 {
 	glfwSetWindowShouldClose(m_glfw_window, 1);

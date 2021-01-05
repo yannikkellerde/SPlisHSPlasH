@@ -158,6 +158,7 @@ namespace SPH
 		static std::vector<KeyFunction> &getKeyFunc() { return keyfunc; }
 		static void init(int argc, char **argv, const int width, const int height, const char *name);
 		static void destroy ();
+        static void die ();
 		static void viewport ();
 		static void initLights ();
 		static Shader *createShader(const std::string &vertexShader, const std::string &geometryShader, const std::string &fragmentShader);

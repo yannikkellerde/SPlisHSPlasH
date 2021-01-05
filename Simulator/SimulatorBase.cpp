@@ -55,7 +55,7 @@ int SimulatorBase::ENUM_WALLS_GEOMETRY_NO_WALLS = -1;
  
 SimulatorBase::SimulatorBase()
 {
-	Utilities::logger.addSink(unique_ptr<Utilities::ConsoleSink>(new Utilities::ConsoleSink(Utilities::LogLevel::INFO)));
+	Utilities::logger.addSink(unique_ptr<Utilities::ConsoleSink>(new Utilities::ConsoleSink(Utilities::LogLevel::WARN)));
 
 	m_boundarySimulator = nullptr;
 	m_gui = nullptr;
@@ -321,7 +321,7 @@ void SimulatorBase::init(int argc, char **argv, const std::string &windowName)
 
 	std::string logPath = FileSystem::normalizePath(m_outputPath + "/log");
 	FileSystem::makeDirs(logPath);
-	Utilities::logger.addSink(unique_ptr<Utilities::FileSink>(new Utilities::FileSink(Utilities::LogLevel::DEBUG, logPath + "/SPH_log.txt")));
+	Utilities::logger.addSink(unique_ptr<Utilities::FileSink>(new Utilities::FileSink(Utilities::LogLevel::WARN, logPath + "/SPH_log.txt")));
 
 	LOG_INFO  << "SPlisHSPlasH version: " << SPLISHSPLASH_VERSION;
 	LOG_DEBUG << "Git refspec:          " << GIT_REFSPEC;
@@ -521,7 +521,7 @@ void SimulatorBase::cleanup()
 
 	if (m_useGUI)
 		m_gui->cleanup();
-
+        Utilities::logger.deleteSinks();
 	delete Simulation::getCurrent();
 }
 

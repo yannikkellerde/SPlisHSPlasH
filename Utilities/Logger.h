@@ -114,7 +114,10 @@ namespace Utilities
 		bool m_active;
 
 	public:
-		// Todo: format
+		void deleteSinks()
+                {
+                        m_sinks.clear();
+                }
 
 		void addSink(std::unique_ptr<LogSink> sink)
 		{

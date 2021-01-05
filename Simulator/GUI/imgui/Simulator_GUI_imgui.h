@@ -43,6 +43,7 @@ namespace SPH
 			virtual void cleanup();
 			virtual void run();
             virtual void one_render();
+            virtual void die();
             virtual int get_bottle_x();
             virtual int get_bottle_y();
             virtual int get_bottle_rotation();

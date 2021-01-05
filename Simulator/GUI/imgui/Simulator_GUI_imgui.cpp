@@ -112,6 +112,7 @@ void Simulator_GUI_imgui::initImguiParameters()
 	imguiParameters::addParam("General", "General", timeStepSizeParam);
 
 	imguiParameters::imguiBoolParameter* wireframeParam = new imguiParameters::imguiBoolParameter();
+    MiniGL::setDrawMode(GL_LINE);
 	wireframeParam->description = "Switch wireframe mode";
 	wireframeParam->label = "Wireframe";
 	wireframeParam->readOnly = false;
@@ -295,6 +296,9 @@ void Simulator_GUI_imgui::destroy()
 void Simulator_GUI_imgui::cleanup()
 {
 	MiniGL::getKeyFunc().clear();
+    MiniGL::bottle_x = 0;
+    MiniGL::bottle_y = 0;
+    MiniGL::bottle_rotation = 0;
 }
 
 void Simulator_GUI_imgui::render()
@@ -437,6 +441,11 @@ void Simulator_GUI_imgui::run()
 void Simulator_GUI_imgui::one_render()
 {
     MiniGL::one_render();
+}
+
+void Simulator_GUI_imgui::die()
+{
+    MiniGL::die();
 }
 
 int Simulator_GUI_imgui::get_bottle_x()
