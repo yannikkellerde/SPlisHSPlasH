@@ -55,7 +55,7 @@ int SimulatorBase::ENUM_WALLS_GEOMETRY_NO_WALLS = -1;
  
 SimulatorBase::SimulatorBase()
 {
-	Utilities::logger.addSink(unique_ptr<Utilities::ConsoleSink>(new Utilities::ConsoleSink(Utilities::LogLevel::WARN)));
+	Utilities::logger.addSink(unique_ptr<Utilities::ConsoleSink>(new Utilities::ConsoleSink(Utilities::LogLevel::DEBUG)));
 
 	m_boundarySimulator = nullptr;
 	m_gui = nullptr;
