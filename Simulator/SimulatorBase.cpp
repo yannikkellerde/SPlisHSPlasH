@@ -55,7 +55,7 @@ int SimulatorBase::ENUM_WALLS_GEOMETRY_NO_WALLS = -1;
  
 SimulatorBase::SimulatorBase()
 {
-	Utilities::logger.addSink(unique_ptr<Utilities::ConsoleSink>(new Utilities::ConsoleSink(Utilities::LogLevel::DEBUG)));
+	Utilities::logger.addSink(unique_ptr<Utilities::ConsoleSink>(new Utilities::ConsoleSink(Utilities::LogLevel::WARN)));
 
 	m_boundarySimulator = nullptr;
 	m_gui = nullptr;
@@ -788,12 +788,16 @@ bool SimulatorBase::timeStepNoGUI()
 	const bool sim2D = sim->is2DSimulation();
 
 	START_TIMING("SimStep");
+    LOG_DEBUG << "Starting Step";
 	Simulation::getCurrent()->getTimeStep()->step();
+    LOG_DEBUG << "Time Step Step";
 	STOP_TIMING_AVG;
 
 	m_boundarySimulator->timeStep();
+    LOG_DEBUG << "Boundary Simulator Step";
 
 	step();
+    LOG_DEBUG << "Step should be done now";
 
 	INCREASE_COUNTER("Time step size", TimeManager::getCurrent()->getTimeStepSize());
 
